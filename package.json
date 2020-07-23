@@ -1,0 +1,32 @@
+{
+  "name": "nimpi-search",
+  "version": "1.0.0",
+  "description": "Módulo para desenvolvimento de códigos para busca.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NIMPI/nimpi-search.git"
+  },
+  "keywords": [
+    "busca",
+    "search",
+    "nimpi"
+  ],
+  "author": "Juliano de Melo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NIMPI/nimpi-search/issues"
+  },
+  "homepage": "https://github.com/NIMPI/nimpi-search#readme",
+  "dependencies": {
+    "async": "^3.1.0",
+    "chalk": "^2.4.2",
+    "config": "^3.2.3",
+    "elasticsearch": "^16.4.0",
+    "moment": "^2.24.0",
+    "mongodb": "^3.3.2"
+  }
+}
