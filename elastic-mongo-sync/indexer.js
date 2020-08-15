@@ -9,12 +9,30 @@ const params_elastic_mongo = require('./params_sync.json')
 const url_mongo = params_elastic_mongo.mongodb.url;
 
 //parâmetros de conexão elasticsearch
-const elasticClient = new elasticsearch.Client({
-    host: params_elastic_mongo.elasticsearch.url + "" + params_elastic_mongo.elasticsearch.port,
+/*node: params_elastic_mongo.elasticsearch.url + "" + params_elastic_mongo.elasticsearch.port,
+    auth: {
+        username: 'elastic',
+        password: '$uportE99'
+      },
+ auth: {
+   username: 'elastic',
+   password: '$uportE99'
+ } 
+  node: 'https://elastic:$uportE99@localhost:9200',
     requestTimeout: 6 * 350 * 25000,
     requestTimeout: Infinity,
     keepAlive: false
     // log: 'debug',
+  */
+const elasticClient = new elasticsearch.Client({
+    host: [
+        {
+          host: 'localhost',
+          auth: 'elastic:$uportE99',
+          protocol: 'http',
+          port: 9200
+        }
+    ]
 })
 
 var itemQue = [];
