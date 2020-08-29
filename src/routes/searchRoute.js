@@ -15,5 +15,10 @@ module.exports = app => {
         let text = req.query.text!=undefined ? req.query.text:'';
         app.src.controllers.searchController.autocomplete(app,req,res,text);
     })
+    app.get('/v1/didyoumean',(req,res)=>{
+        let text = req.query.text!=undefined ? req.query.text:'';
+        app.src.controllers.searchController.didyoumean(app,req,res,text);
+    })
+
 
 }

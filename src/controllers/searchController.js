@@ -10,3 +10,9 @@ module.exports.autocomplete = (app,req,res,text) =>{
         res.status(response.status).send(response);
     });
 }
+
+module.exports.didyoumean = (app,req,res,text) =>{
+    app.src.dao.searchDAO.didyoumean(text,(response)=>{
+        res.status(response.status).send(response);
+    });
+}

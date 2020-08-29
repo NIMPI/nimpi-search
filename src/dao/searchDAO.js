@@ -9,7 +9,9 @@ module.exports.findbyterm = (query,callback)=>{
             body: {
               query: {
                 "query_string": {
-                 "query": `*${query.term}*`
+                 "query": ""+query.term+"",
+                 "default_operator":"OR",
+            
                },    
              },
              "size":query.size,
@@ -48,10 +50,10 @@ module.exports.autocomplete = (texto,callback)=>{
         "jobsuggest": {
           "prefix": `${texto}`,
           "completion": {
-            "field": "title",
+            "field": "title.completion",
             "size":100,
             "fuzzy": {
-              "fuzziness": 1
+              "fuzziness":"auto"
             }
           }
         }
@@ -75,8 +77,9 @@ module.exports.autocomplete = (texto,callback)=>{
         //console.log(suggest[0].text.indexOf('test'));
       
       for(let i = 0; i < suggest.length; i++){
-       sugestoes[i] = suggest[i].text;
-        
+       if(sugestoes.indexOf(suggest[i].text)==-1){
+        sugestoes.push(suggest[i].text);
+       }
      }
 
      console.log(sugestoes);
@@ -84,6 +87,70 @@ module.exports.autocomplete = (texto,callback)=>{
         let retorno = {
             "status":status,
             "data":sugestoes};
+        return callback(retorno);
+        /*
+        response.hits.hits.forEach(function(hit){
+         retorno.push(hit);
+        })
+        ;
+        */
+      }
+  });
+
+}
+
+module.exports.didyoumean = (texto,callback)=>{
+  var client = require('../config/connectionelastic.js');
+  client.search({  
+    index: 'nimpi',
+    type: '_doc',
+    body: {
+      "suggest": {
+        "text":`${texto}`,
+        "simple_phrase": {
+          "phrase": {
+            "field": "title",
+            "confidence": 0.0,
+            "direct_generator": [
+              {
+                "field": "title"
+              }
+            ],
+            "collate": {
+              "query": {
+                "source": {
+                  "match": {
+                    "title": {
+                      "query": "{{suggestion}}",
+                      "fuzziness": "1",
+                      "operator": "and"
+                    }
+                  }
+                }
+              },
+              "prune": "true"
+            }
+          }
+        }
+      }
+    }},function (error, response,status) {
+      if (error){
+        let retorno = {
+            "status":status,
+            "msg":"error when searching for suggestions in elasticsearch "
+        }
+        return callback(retorno);
+      }
+      else {
+
+
+
+        let text_correct = response.suggest.simple_phrase[0].options[0].text;
+     
+        let retorno = {
+            "status":status,
+            "isCorrection":response.suggest.simple_phrase[0].options.length>1 ? true : false,
+            "data":response.suggest.simple_phrase[0].options.length>1 ? text_correct : "Não há correção." };
         return callback(retorno);
         /*
         response.hits.hits.forEach(function(hit){
