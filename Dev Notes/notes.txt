@@ -1,0 +1,14 @@
+//querys de buscas
+////* Busca por autocomlete na termo title *////
+GET nimpi/_search
+{
+  "_source": ["title"],
+  "query": {
+    "match_phrase_prefix": {
+      "title": {
+        "query": "tel",
+        "max_expansions": 10
+      }
+    }
+  }
+}

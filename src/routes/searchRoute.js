@@ -11,4 +11,9 @@ module.exports = app => {
 
         //res.send("Bem vindo a interface backend de busca avançada do projeto NIMPI.");
     })
+    app.get('/v1/autocomplete',(req,res)=>{
+        let text = req.query.text!=undefined ? req.query.text:'';
+        app.src.controllers.searchController.autocomplete(app,req,res,text);
+    })
+
 }

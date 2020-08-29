@@ -8,4 +8,24 @@ var client = new elasticsearch.Client( {
   ]
 });
 
+/*
+client.indices.putMapping({
+  index: 'nimpi',
+  type: '_doc',
+  body: {
+  properties: {
+  'title': {
+  'type': 'completion'
+  },
+  }
+  }
+  },function(err,resp,status){
+  if (err) {
+  console.log(err);
+  }
+  else {
+  console.log(resp);
+  }
+  });
+*/
 module.exports = client;  
