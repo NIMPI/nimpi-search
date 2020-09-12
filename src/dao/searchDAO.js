@@ -15,7 +15,34 @@ module.exports.findbyterm = (query,callback)=>{
                },    
              },
              "size":query.size,
-             "from":query.from
+             "from":query.from,
+             "aggs": {
+    
+              "type": {
+                "terms": {
+                  "field": "type.keyword",
+                  "size": 10
+                }
+          },
+            "year": {
+                "terms": {
+                  "field": "year",
+                  "size": 10
+                }
+          },
+            "date": {
+                "terms": {
+                  "field": "date",
+                  "size": 5
+                }
+          },
+            "tags": {
+                "terms": {
+                  "field": "tags.keyword",
+                  "size": 5
+                }
+            }
+          }
             }
           },function (error, response,status) {
               if (error){
@@ -28,7 +55,9 @@ module.exports.findbyterm = (query,callback)=>{
               else {
                 let retorno = {
                     "status":200,
-                    "data":response.hits.hits};
+                    "data":response.hits.hits,
+                    "filters":response.aggregations
+                  };
                 return callback(retorno);
                 /*
                 response.hits.hits.forEach(function(hit){
