@@ -1,3 +1,4 @@
+const { SecretsManager } = require('aws-sdk');
 const { suggest } = require('../config/connectionelastic.js');
 
 module.exports.findbyterm = (query,callback)=>{
@@ -180,6 +181,87 @@ module.exports.didyoumean = (texto,callback)=>{
             "status":status,
             "isCorrection":response.suggest.simple_phrase[0].options.length>1 ? true : false,
             "data":response.suggest.simple_phrase[0].options.length>1 ? text_correct : "Não há correção." };
+        return callback(retorno);
+        /*
+        response.hits.hits.forEach(function(hit){
+         retorno.push(hit);
+        })
+        ;
+        */
+      }
+  });
+
+}
+
+module.exports.findbymetadata = (metadata,callback)=>{
+  var client = require('../config/connectionelastic.js');
+  console.log(metadata)
+  client.search({  
+    index: 'nimpi',
+    type: '_doc',
+    body: {
+      "size": metadata.size,
+      "from": metadata.from, 
+        "query": { 
+          "bool": { 
+            "must": [
+              { "match": { "title":  {"query":""+metadata.title, "fuzziness": "auto", "zero_terms_query": "all"}}},
+              { "match": { "description":{ "query":""+metadata.description,"fuzziness":"auto","zero_terms_query": "all"}}},
+              { "match": { "type": {"query":""+metadata.type,"fuzziness": "auto","zero_terms_query": "all"}}},
+              { "match": { "publisher_name": {"query":""+metadata.publisherName,"fuzziness": "auto","zero_terms_query": "all"}}},
+               { "match": { "tags": {"query":""+metadata.tag,"fuzziness": "auto","zero_terms_query": "all"}}},
+              {"range":{"date":{
+                                  "format": "yyyy-MM-dd",
+                                  "gte": metadata.dateInitial,
+                                  "lte": metadata.dateFinal
+                             }
+                              }
+                                }
+            ]
+          }
+        },
+       "aggs": {
+          
+          "type": {
+            "terms": {
+              "field": "type.keyword",
+              "size": 10
+            }
+      },
+        "year": {
+            "terms": {
+              "field": "year",
+              "size": 10
+            }
+      },
+        "date": {
+            "terms": {
+              "field": "date",
+              "size": 5
+            }
+      },
+        "tags": {
+            "terms": {
+              "field": "tags.keyword",
+              "size": 5
+            }
+        }
+      }
+    }},function (error, response,status) {
+      if (error){
+        let retorno = {
+            "status":status,
+            "msg":"error when searching for suggestions in elasticsearch ",
+            "error":error
+        }
+        return callback(retorno);
+      }
+      else {
+     
+        let retorno = {
+            "status":status,
+            "paramsSearch":metadata,
+            "data":response};
         return callback(retorno);
         /*
         response.hits.hits.forEach(function(hit){

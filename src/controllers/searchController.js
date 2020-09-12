@@ -16,3 +16,9 @@ module.exports.didyoumean = (app,req,res,text) =>{
         res.status(response.status).send(response);
     });
 }
+
+module.exports.findbymetadata = (app,req,res,metadata) =>{
+    app.src.dao.searchDAO.findbymetadata(metadata,(response)=>{
+        res.status(response.status).send(response);
+    });
+}

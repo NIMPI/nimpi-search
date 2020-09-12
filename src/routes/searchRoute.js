@@ -20,5 +20,21 @@ module.exports = app => {
         app.src.controllers.searchController.didyoumean(app,req,res,text);
     })
 
+    app.get('/v1/findbymetadata',(req,res)=>{
+        let metadata ={
+            size : req.query.size == undefined ? 10:parseInt(req.query.size),
+            from: req.query.from == undefined ? 0:parseInt(req.query.from),
+            title : req.query.title == undefined ? "":req.query.title,
+            description : req.query.description == undefined ? "":req.query.description,
+            dateInitial : req.query.dateInitial == undefined ? '0001-01-01':req.query.dateInitial,
+            dateFinal : req.query.dateFinal == undefined ? '9999-01-01':req.query.dateFinal,
+            publisherName : req.query.publisherName == undefined ? "":req.query.publisherName,
+            type : req.query.type == undefined ? "":req.query.type,
+            tag : req.query.tag == undefined ? "":req.query.tag
+        }
+
+        app.src.controllers.searchController.findbymetadata(app,req,res,metadata);
+    })
+
 
 }
