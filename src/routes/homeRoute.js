@@ -1,5 +1,5 @@
 module.exports = app =>{
-    app.get('/v1/home/', (req, res) => {
+    app.get('/', (req, res) => {
         app.src.controllers.autenticate.isAuth(req,(Auth)=>{
             if (Auth.isAuth){
             res.send({

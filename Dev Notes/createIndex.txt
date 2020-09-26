@@ -1,4 +1,7 @@
 PUT nimpi/
+
+
+curl -XPUT "http://localhost:9200/test/_mapping" -H 'Content-Type: application/json' -d'
 {
   "settings": {
     "index": {
