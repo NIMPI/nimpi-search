@@ -1,5 +1,6 @@
 require('dotenv').config();
 module.exports.isAuth = (req,callback)=>{
+    
     const [hashType,hash] = req.headers.authorization.split(' ');
     const [user,password] = Buffer.from(hash,'base64').toString().split(':');
     

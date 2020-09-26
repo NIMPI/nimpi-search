@@ -4,9 +4,9 @@
   "description": "Módulo para desenvolvimento de códigos para busca.",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon src/app.js",
-    "start-api-search":"pm2 start src/app.js",
-    "stop-api-search":"pm2 stop 0"
+    "dev": "sudo nodemon src/app.js",
+    "start-api-search":"sudo pm2 start src/app.js",
+    "stop-api-search":"sudo pm2 stop 0"
 
   },
   "repository": {
