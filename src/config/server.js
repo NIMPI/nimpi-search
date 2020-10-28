@@ -12,6 +12,13 @@ const app = express();
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
+//documentação da api
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./src/docs/swagger.yaml');
+app.use(`/api/v1/docs`, swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+
 //carregando meus módulos automaticamente através da dependencia consign
 const consign = require('consign')
 consign()

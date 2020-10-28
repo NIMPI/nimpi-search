@@ -7,6 +7,6 @@ var collection = params_elastic_mongo.elasticsearch.elasticsearchIndices.NIMPI.c
 
 //executar o método para sincronização da base de dados.
 app.src.dao.indexingDAO.index_elastic_from_mongo(index,type,collection,(resposta)=>{
-    res.send(resposta);
+    res.status(resposta.status).send(resposta);
 }); 
 }

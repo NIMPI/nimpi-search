@@ -65,7 +65,8 @@ function index_elastic_from_mongo(esIndexName, esIndexType, collectionName, call
     mongoClient.connect(url_mongo, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, client) {
         if (err) {
             let retorno = {
-                "msg": "Sorry unable to connect to MongoDB Error"
+                "msg": "Sorry unable to connect to MongoDB Error",
+                "status": 408
             }
             return (callback(retorno));
             //console.log(chalk.yellow('Sorry unable to connect to MongoDB Error:\n'), chalk.red(err));
@@ -128,7 +129,8 @@ function index_elastic_from_mongo(esIndexName, esIndexType, collectionName, call
                                     console.log(chalk.blue("prevSet :" + prev + " newSet : " + offset))
                                     if (err) {
                                         let retorno = {
-                                            "msg": err
+                                            "msg": err,
+                                            "status":503
                                         }
                                         return (callback(retorno));
                                     } else if (res) {
@@ -147,7 +149,8 @@ function index_elastic_from_mongo(esIndexName, esIndexType, collectionName, call
                         //console.log(chalk.red("All the data successfully imported into the Elasticsearch!"));
                         //process.exit()
                         let retorno = {
-                            "msg": "All the data successfully imported into the Elasticsearch!"
+                            "msg": "All the data successfully imported into the Elasticsearch!",
+                            "status":200
                         }
                         return (callback(retorno));
                     }

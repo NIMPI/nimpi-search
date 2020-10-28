@@ -1,5 +1,5 @@
 module.exports = app => {
-    app.get('/v1/document/findbyterm', (req, res) => {
+    app.get('/api/v1/document/findbyterm', (req, res) => {
 
         app.src.controllers.autenticate.isAuth(req, (Auth) => {
             if (Auth.isAuth) {
@@ -12,7 +12,7 @@ module.exports = app => {
                 app.src.controllers.searchController.findbyterm(app, req, res, query);
             } else {
                 res.send({
-                    "status": 404,
+                    "status": 401,
                     "Error": "Invalid credentials. Please consult the administrator."
                 })
             }
@@ -20,7 +20,7 @@ module.exports = app => {
         });
         //res.send("Bem vindo a interface backend de busca avançada do projeto NIMPI.");
     })
-    app.get('/v1/autocomplete', (req, res) => {
+    app.get('/api/v1/autocomplete', (req, res) => {
 
         app.src.controllers.autenticate.isAuth(req, (Auth) => {
             if (Auth.isAuth) {
@@ -28,14 +28,14 @@ module.exports = app => {
                 app.src.controllers.searchController.autocomplete(app, req, res, text);
             } else {
                 res.send({
-                    "status": 404,
+                    "status": 401,
                     "Error": "Invalid credentials. Please consult the administrator."
                 })
             }
 
         });
     })
-    app.get('/v1/didyoumean', (req, res) => {
+    app.get('/api/v1/didyoumean', (req, res) => {
 
         app.src.controllers.autenticate.isAuth(req, (Auth) => {
             if (Auth.isAuth) {
@@ -50,7 +50,7 @@ module.exports = app => {
         });
     })
 
-    app.get('/v1/findbymetadata', (req, res) => {
+    app.get('/api/v1/findbymetadata', (req, res) => {
         app.src.controllers.autenticate.isAuth(req, (Auth) => {
             if (Auth.isAuth) {
                 let metadata = {
@@ -68,7 +68,7 @@ module.exports = app => {
                 app.src.controllers.searchController.findbymetadata(app, req, res, metadata);
             } else {
                 res.send({
-                    "status": 404,
+                    "status": 401,
                     "Error": "Invalid credentials. Please consult the administrator."
                 })
             }
