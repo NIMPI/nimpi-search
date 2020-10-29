@@ -1,7 +1,7 @@
 const app = require('./config/server')
 
-var port = 80;
+var port = 3000;
 
 app.listen(port,()=>{
-    console.log('API Instagram is running port 80');
+    console.log('API Instagram is running port '+port);
 })

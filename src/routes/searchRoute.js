@@ -1,5 +1,6 @@
+require('dotenv').config();
 module.exports = app => {
-    app.get('/api/v1/document/findbyterm', (req, res) => {
+    app.get(process.env.API+'/document/findbyterm', (req, res) => {
 
         app.src.controllers.autenticate.isAuth(req, (Auth) => {
             if (Auth.isAuth) {
@@ -20,7 +21,7 @@ module.exports = app => {
         });
         //res.send("Bem vindo a interface backend de busca avançada do projeto NIMPI.");
     })
-    app.get('/api/v1/autocomplete', (req, res) => {
+    app.get(process.env.API+'/autocomplete', (req, res) => {
 
         app.src.controllers.autenticate.isAuth(req, (Auth) => {
             if (Auth.isAuth) {
@@ -35,7 +36,7 @@ module.exports = app => {
 
         });
     })
-    app.get('/api/v1/didyoumean', (req, res) => {
+    app.get(process.env.API+'/didyoumean', (req, res) => {
 
         app.src.controllers.autenticate.isAuth(req, (Auth) => {
             if (Auth.isAuth) {
@@ -50,7 +51,7 @@ module.exports = app => {
         });
     })
 
-    app.get('/api/v1/findbymetadata', (req, res) => {
+    app.get(process.env.API+'/findbymetadata', (req, res) => {
         app.src.controllers.autenticate.isAuth(req, (Auth) => {
             if (Auth.isAuth) {
                 let metadata = {

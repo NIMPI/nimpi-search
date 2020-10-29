@@ -1,5 +1,5 @@
 module.exports = app =>{
-    app.post('/api/v1/indexing', (req, res) => {
+    app.post(process.env.API+'/indexing', (req, res) => {
         
         app.src.controllers.autenticate.isAuth(req,(Auth)=>{
             if (Auth.isAuth){

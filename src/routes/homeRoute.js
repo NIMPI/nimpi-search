@@ -1,6 +1,7 @@
+require('dotenv').config();
 module.exports = app => {
     app.get('/', (req, res) => {
-        res.redirect('api/v1/docs');
+        res.redirect(process.env.API+'/docs');
         /*
         res.send({
             "status": 200,
