@@ -1,6 +1,6 @@
 require('dotenv').config();
 module.exports = app => {
-    app.get(process.env.API+'/document/findbyterm', (req, res) => {
+    app.get(process.env.API+'document/findbyterm', (req, res) => {
 
         app.src.controllers.autenticate.isAuth(req, (Auth) => {
             if (Auth.isAuth) {
@@ -51,7 +51,7 @@ module.exports = app => {
         });
     })
 
-    app.get(process.env.API+'/findbymetadata', (req, res) => {
+    app.get(process.env.API+'document/findbymetadata', (req, res) => {
         app.src.controllers.autenticate.isAuth(req, (Auth) => {
             if (Auth.isAuth) {
                 let metadata = {
