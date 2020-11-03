@@ -10,7 +10,7 @@ $ sudo npm install
 $ sudo npm install -g pm2
 
 * Para ambientes de desenvolvimento
-$ sudo npm install -g nodemom
+<p>$ sudo npm install -g nodemom
 
 * Iniciar aplicação em ambientes de produção
 $ npm run start
