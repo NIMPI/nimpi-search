@@ -20,20 +20,20 @@ $ npm run dev
 
 ** Configuração do ambiente **
 No arquivo .env defina suas configurações.
-PORT_API -> Configuração da porta HTTP da sua API de Busca
-DB_CONNET -> Cadeia URL de conexão do MongoDB
+* PORT_API -> Configuração da porta HTTP da sua API de Busca
+* DB_CONNET -> Cadeia URL de conexão do MongoDB
 
-HOST_ELASTIC -> Endereço do servidor Elasticsearch
-PORT_ELASTIC -> Porta do servidor Elasticsearch
-USER_ELASTIC -> Usuário Elasticsearch
-PASSWORD_ELASTIC -> Senha atribuída ao usuário do ElasticSearch
+* HOST_ELASTIC -> Endereço do servidor Elasticsearch
+* PORT_ELASTIC -> Porta do servidor Elasticsearch
+* USER_ELASTIC -> Usuário Elasticsearch
+* PASSWORD_ELASTIC -> Senha atribuída ao usuário do ElasticSearch
 
-BUCKET_NAME -> Nome da base de dados que será indexada a partir do MongoDB
+* BUCKET_NAME -> Nome da base de dados que será indexada a partir do MongoDB
 
-USER_AUTH -> Usuário de autenticação da API
-PASSWORD ->  Senha atribuída ao usuário de autenticação da API
+* USER_AUTH -> Usuário de autenticação da API
+* PASSWORD ->  Senha atribuída ao usuário de autenticação da API
 
-API -> Versão atribuída a API
+* API -> Versão atribuída a API
 
 ** Autenticando a conexão com API **
 Utilizar-se de usuário e senha programados no arquivo .env da aplicação, e autenticá-lo utilizando Basic authentication.
