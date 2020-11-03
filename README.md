@@ -18,8 +18,8 @@ Instalar dependências NodeJS.
 * Iniciar aplicação em ambiente de desenvolvimento
 <p>$ npm run dev
 
-** Configuração do ambiente **
-<p>No arquivo .env defina suas configurações.
+Configuração do ambiente
+<p>No arquivo .env defina suas configurações.</p>
 * PORT_API -> Configuração da porta HTTP da sua API de Busca
 * DB_CONNET -> Cadeia URL de conexão do MongoDB
 
@@ -35,7 +35,7 @@ Instalar dependências NodeJS.
 
 * API -> Versão atribuída a API
 
-** Autenticando a conexão com API **
+Autenticando a conexão com API
 <p>Utilizar-se de usuário e senha programados no arquivo .env da aplicação, e autenticá-lo utilizando Basic authentication.
 
 <p>Ambiente testado em ambientes de servidores linux.
