@@ -1,9 +1,9 @@
 # nimpi-search
 
 Requisitos.
-  - Servidor Elasticsearch
-  - Servidor MongoDB
-  - Nodejs
+  * Servidor Elasticsearch
+  * Servidor MongoDB
+  * Nodejs
 
 Instalar dependências NodeJS.
 $ sudo npm install
