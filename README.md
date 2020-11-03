@@ -6,20 +6,20 @@ Requisitos.
   * Nodejs
 
 Instalar dependências NodeJS.
-$ sudo npm install
-$ sudo npm install -g pm2
+<p>$ sudo npm install
+<p>$ sudo npm install -g pm2
 
 * Para ambientes de desenvolvimento
 <p>$ sudo npm install -g nodemom
 
 * Iniciar aplicação em ambientes de produção
-$ npm run start
+<p>$ npm run start
 
 * Iniciar aplicação em ambiente de desenvolvimento
-$ npm run dev
+<p>$ npm run dev
 
 ** Configuração do ambiente **
-No arquivo .env defina suas configurações.
+<p>No arquivo .env defina suas configurações.
 * PORT_API -> Configuração da porta HTTP da sua API de Busca
 * DB_CONNET -> Cadeia URL de conexão do MongoDB
 
@@ -36,6 +36,6 @@ No arquivo .env defina suas configurações.
 * API -> Versão atribuída a API
 
 ** Autenticando a conexão com API **
-Utilizar-se de usuário e senha programados no arquivo .env da aplicação, e autenticá-lo utilizando Basic authentication.
+<p>Utilizar-se de usuário e senha programados no arquivo .env da aplicação, e autenticá-lo utilizando Basic authentication.
 
-Ambiente testado em ambientes de servidores linux.
+<p>Ambiente testado em ambientes de servidores linux.
