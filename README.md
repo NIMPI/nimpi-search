@@ -20,6 +20,7 @@ Instalar dependências NodeJS.
 
 Configuração do ambiente
 <p>No arquivo .env defina suas configurações.</p>
+
 * PORT_API -> Configuração da porta HTTP da sua API de Busca
 * DB_CONNET -> Cadeia URL de conexão do MongoDB
 
