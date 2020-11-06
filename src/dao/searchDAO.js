@@ -175,7 +175,7 @@ module.exports.didyoumean = (texto,callback)=>{
 
 
 
-        let text_correct = response.suggest.simple_phrase[0].options[0].text;
+        let text_correct = response.suggest.simple_phrase[0].options.length>1 ? response.suggest.simple_phrase[0].options[0].text:'';
      
         let retorno = {
             "status":status,

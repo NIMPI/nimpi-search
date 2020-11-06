@@ -1,6 +1,7 @@
+require('dotenv').config();
 const app = require('./config/server')
 
-var port = 3000;
+var port = process.env.PORT_API;
 
 app.listen(port,()=>{
     console.log('API Instagram is running port '+port);

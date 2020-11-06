@@ -3,9 +3,10 @@ require('dotenv').config();
 
 
 var client = new elasticsearch.Client( {  
-  //`http://${process.env.USER_ELASTIC}:${process.env.PASSWORD_ELASTIC}@${process.env.HOST_ELASTIC}:${process.env.PORT_ELASTIC}/`
+  
   hosts: [
-    `http://${process.env.HOST_ELASTIC}:${process.env.PORT_ELASTIC}/`,
+    `http://${process.env.USER_ELASTIC}:${process.env.PASSWORD_ELASTIC}@${process.env.HOST_ELASTIC}:${process.env.PORT_ELASTIC}/`
+    //`http://${process.env.HOST_ELASTIC}:${process.env.PORT_ELASTIC}/`,
   ]
 });
 

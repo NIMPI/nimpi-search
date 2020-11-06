@@ -12,6 +12,7 @@ module.exports.autocomplete = (app,req,res,text) =>{
 }
 
 module.exports.didyoumean = (app,req,res,text) =>{
+    console.log(text);
     app.src.dao.searchDAO.didyoumean(text,(response)=>{
         res.status(response.status).send(response);
     });
