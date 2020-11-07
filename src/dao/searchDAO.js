@@ -208,7 +208,6 @@ module.exports.findbymetadata = (metadata,callback)=>{
               { "match": { "title":  {"query":""+metadata.title, "fuzziness": "auto", "zero_terms_query": "all"}}},
               { "match": { "description":{ "query":""+metadata.description,"fuzziness":"auto","zero_terms_query": "all"}}},
               { "match": { "type": {"query":""+metadata.type,"fuzziness": "auto","zero_terms_query": "all"}}},
-              { "match": { "publisher_name": {"query":""+metadata.publisherName,"fuzziness": "auto","zero_terms_query": "all"}}},
                { "match": { "tags": {"query":""+metadata.tag,"fuzziness": "auto","zero_terms_query": "all"}}},
               {"range":{"date":{
                                   "format": "yyyy-MM-dd",
