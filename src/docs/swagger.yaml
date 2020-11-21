@@ -16,7 +16,7 @@ schemes:
 - "http"
 
 paths:
-  /indexing:
+  v1/indexing:
     post:
       tags:
       - "Operational"
@@ -101,10 +101,6 @@ paths:
           name: dateFinal
           type: string
           description: Find by date final, YYYY-mm-dd
-        - in: query
-          name: publisherName
-          type: string
-          description: Find by publisher, data in text format
         - in: query
           name: type
           type: string
