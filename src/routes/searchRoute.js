@@ -55,6 +55,7 @@ module.exports = app => {
         app.src.controllers.autenticate.isAuth(req, (Auth) => {
             if (Auth.isAuth) {
                 let metadata = {
+                    term: req.query.term == undefined ? "":req.query.term,
                     size: req.query.size == undefined ? 10 : parseInt(req.query.size),
                     from: req.query.from == undefined ? 0 : parseInt(req.query.from),
                     title: req.query.title == undefined ? "" : req.query.title,

@@ -202,50 +202,57 @@ module.exports.findbymetadata = (metadata,callback)=>{
     body: {
       "size": metadata.size,
       "from": metadata.from, 
-        "query": { 
-          "bool": { 
-            "must": [
-              { "match": { "title":  {"query":""+metadata.title, "fuzziness": "auto", "zero_terms_query": "all"}}},
-              { "match": { "description":{ "query":""+metadata.description,"fuzziness":"auto","zero_terms_query": "all"}}},
-              { "match": { "type": {"query":""+metadata.type,"fuzziness": "auto","zero_terms_query": "all"}}},
-               { "match": { "tags": {"query":""+metadata.tag,"fuzziness": "auto","zero_terms_query": "all"}}},
-              {"range":{"date":{
-                                  "format": "yyyy-MM-dd",
-                                  "gte": metadata.dateInitial,
-                                  "lte": metadata.dateFinal
-                             }
-                              }
-                                }
-            ]
-          }
-        },
-       "aggs": {
-          
-          "type": {
-            "terms": {
-              "field": "type.keyword",
-              "size": 10
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "query_string": {
+                "query": metadata.term
+              }
             }
-      },
-        "year": {
-            "terms": {
-              "field": "year",
-              "size": 10
-            }
-      },
-        "date": {
-            "terms": {
-              "field": "date",
-              "size": 5
-            }
-      },
-        "tags": {
-            "terms": {
-              "field": "tags.keyword",
-              "size": 5
-            }
+          ],
+          "filter": [
+            { "match": { "title":  {"query":""+metadata.title, "fuzziness": "auto", "zero_terms_query": "all"}}},
+                  { "match": { "description":{ "query":""+metadata.description,"fuzziness":"auto","zero_terms_query": "all"}}},
+                  { "match": { "type": {"query":""+metadata.title,"fuzziness": "auto","zero_terms_query": "all"}}},
+                   { "match": { "tags": {"query":""+metadata.tag,"fuzziness": "auto","zero_terms_query": "all"}}},
+                  {"range":{"date":{
+                                      "format": "yyyy-MM-dd",
+                                      "gte": metadata.dateInitial,
+                                      "lte": metadata.dateFinal
+                                 }
+                                  }
+                                    }
+          ]
         }
-      }
+      },
+           "aggs": {
+              
+              "type": {
+                "terms": {
+                  "field": "type.keyword",
+                  "size": 10
+                }
+          },
+            "year": {
+                "terms": {
+                  "field": "year",
+                  "size": 10
+                }
+          },
+            "date": {
+                "terms": {
+                  "field": "date",
+                  "size": 5
+                }
+          },
+            "tags": {
+                "terms": {
+                  "field": "tags.keyword",
+                  "size": 5
+                }
+            }
+          }
     }},function (error, response,status) {
       if (error){
         let retorno = {
